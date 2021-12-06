@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-# https://www.tutorialspoint.com/how-to-move-an-image-in-tkinter-canvas-with-arrow-keys
-
-
-# Import the required libraries
 from tkinter import *
 from PIL import Image, ImageTk
+import random
+import math
 
 
 class App():
@@ -13,7 +11,10 @@ class App():
         self.height = 500
         self.width = 500
         self.window = Tk()
+        self.window.resizable(False, False)
         self.window.geometry(f"{self.width}x{self.height}")
+        self.window.configure(background='black')
+        self.window.title("FLASH")
 
         self.canvas = Canvas(
             self.window,
@@ -22,55 +23,62 @@ class App():
             bg="black"
         )
         self.canvas.pack()
+        self.canvas.focus_set()
+        self.canvas.bind("<Button-1>", self._clicked)
 
-        self.window.after(1000, self.start_game)
+        good_img = PhotoImage(file="good.png")
+        bad_img  = PhotoImage(file="bad.png")
+        good = self.canvas.create_image(
+            100, 100,
+            anchor=NW,
+            image=good_img,
+            tags=("good")
+        )
+        bad  = self.canvas.create_image(200, 200, anchor=NW, image=bad_img)
+        self.pieces = {
+            "good": good,
+            "bad": bad
+        }
+
+        self.window.after(500, self.start_game)
         self.window.mainloop()
 
 
-    def random_position(self):
-        x = min + (max - min) * random()
-        y = min + (max - min) * random()
-        return (x, y)
-
-
     def start_game(self):
-        self.clear_canvas()
+        for name, image_id in self.pieces.items():
+            self.move_piece(image_id)
+        self.window.after(500, self.start_game)
 
-        #self.draw_image("images/player.png", self.get_canvas_center_x(), self.get_canvas_center_y())
-        self.window.after(1000, self.start_game)
 
+    def move_piece(self, image_id):
+        current_x, current_y = self.canvas.coords(image_id)
+        x1, y1, x2, y2 = self.canvas.bbox(image_id)
+        #print(self.canvas.bbox(image_id))
+        # TODO - make sure the image doesn't go off screen.
+        x = math.floor(random.randint(-15, 15))
+        y = math.floor(random.randint(-15, 15))
 
-    def draw_image(self, image_path, x, y):
-        return self.canvas.create_image(
-            x,
-            y,
-            image=ImageTk.PhotoImage(
-                Image.open(image_path)
-            )
-        )
+        if y1 < 0:
+            y = math.floor(random.randint(5, 15))
+        if y2 > self.height:
+            y = math.floor(random.randint(-15, -5))
+        if x1 < 0:
+            x = math.floor(random.randint(5, 15))
+        if x2 > self.width:
+            x = math.floor(random.randint(-15, -5))
 
-    def move_image(self, image_id, x, y):
         self.canvas.move(image_id, x, y)
+        self.window.update()
 
-    def clear_canvas(self):
-        self.canvas.delete("all")
 
-    def get_canvas_coords(self, image_id):
-        return self.canvas.coords(image_id)
+    def _clicked(self, event):
+        x, y = event.x, event.y
+        for name, image_id in self.pieces.items():
+            x1, y1, x2, y2 = self.canvas.bbox(image_id)
+            if x1 <= x <= x2 and y1 <= y <= y2:
+                print(f"{name} was clicked")
 
-    def get_canvas_height(self):
-        return self.height
-
-    def get_canvas_width(self):
-        return self.width
-
-    def get_canvas_center(self):
-        return self.width/2, self.height/2
-
-    def get_canvas_center_x(self):
-        return self.width/2
 
 
 if __name__ == "__main__":
     app = App()
-

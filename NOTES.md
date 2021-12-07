@@ -7,6 +7,11 @@
   - https://medium.com/applied-data-science/how-to-train-ai-agents-to-play-multiplayer-games-using-self-play-deep-reinforcement-learning-247d0b440717
 
 
+## Image Recognition
+  - https://medium.com/@martin.lees/image-recognition-for-automation-with-python-711ac617b4e5
+
+
+
 ## OUI
   - http://standards-oui.ieee.org/oui.txt
 
@@ -15,3 +20,15 @@
   - https://towardsdatascience.com/making-simple-games-in-python-f35f3ae6f31a
   - https://www.askpython.com/python/examples/easy-games-in-python
 
+
+## USB OTG
+  - [USB OTG](https://github.com/christopherwoodall/USBGadgetNetwork)
+  - [How to](https://desertbot.io/blog/ssh-into-pi-zero-over-usb)
+
+
+## Misc
+  - [USB SPEC 1.11 Scan Codes](https://gist.github.com/MightyPork/6da26e382a7ad91b5496ee55fdc73db2)
+  - [Adafruit Keycodes](https://github.com/adafruit/Adafruit_CircuitPython_HID/blob/main/adafruit_hid/keycode.py)
+  - [Adafruit Mouse Codes](https://github.com/adafruit/Adafruit_CircuitPython_HID/blob/main/adafruit_hid/mouse.py)
+  - [USB Device Mode](https://developer.toradex.com/knowledge-base/usb-device-mode-linux)
+  - [Pi Remote Keyboard](https://mtlynch.io/key-mime-pi/)

@@ -109,7 +109,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script src="/codes.js"></script>
-    <script src="/brute.js"></script>
+    <script src="/assets/js/codes.js"></script>
+    <script src="/assets/js/brute.js"></script>
   </body>
 </html>

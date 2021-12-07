@@ -4,6 +4,9 @@
 import os
 import time
 import PIL
+import io
+import base64
+import requests
 import pyscreenshot as ImageGrab
 import pygetwindow as gw
 import pyautogui as pag
@@ -15,48 +18,39 @@ class ScreenShot:
         game.activate()
         im = ImageGrab.grab()
         im_crop = im.crop((
-            int(box.left),
-            int(box.top),
-            int(box.width),
-            int(box.height)
+            int(game.left),
+            int(game.top),
+            int(game.width),
+            int(game.height)
         ))
-        #im_crop.save(image_path, quality=100)
         if encoded:
             return self.encode(im_crop)
 
     def encode(self, img):
-        buffered = BytesIO()
+        buffered = io.BytesIO()
         img.save(buffered, format="PNG")
         buffered.seek(0)
         img_byte = buffered.getvalue()
-        img_str = "data:image/png;base64," + base64.b64encode(img_byte).decode()
-        return img_str
+        #img_str = "data:image/png;base64," + base64.b64encode(img_byte).decode()
+        #return base64.b64encode(img_byte).decode()
+        return base64.urlsafe_b64encode(img_byte).decode()
 
 
-capture = ScreenShot()
-#frame = capture.grab()
+def sendFrame(frame):
+    URL = "http://192.168.137.19/stream.php"
+    PARAMS = {'code': frame}
+    r = requests.post(url = URL, data = PARAMS)
+    #data = r.json()
+    #print(data)
+    print(r)
+    print(r.text)
 
-
-'''
-def screenGrab(box):
-    game = gw.getWindowsWithTitle('FLASH')[0]
-    game.activate()
-    im = ImageGrab.grab()
-    image_path = os.getcwd() + '\\screenshots\\snap__' + str(int(time.time())) + '.png'
-    #im.save(image_path)
-    #im = PIL.Image.open(image_path)
-    im_crop = im.crop((
-        int(box.left),
-        int(box.top),
-        int(box.width),
-        int(box.height)
-    ))
-    im_crop.save(image_path, quality=100)
 
 def main():
-    screenGrab()
+    capture = ScreenShot()
+    frame = capture.grab()
+    sendFrame(frame)
 
 if __name__ == '__main__':
     main()
-'''
 

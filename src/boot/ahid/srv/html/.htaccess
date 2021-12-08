@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/?secure/(.*) https://%{SERVER_NAME}/secure/$1 [R=301,L]

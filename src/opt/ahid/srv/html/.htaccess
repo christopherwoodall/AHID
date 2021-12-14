@@ -1,0 +1,11 @@
+# RewriteEngine On
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+
+## Increase max PHP POST size
+php_value session.gc_maxlifetime 10800
+php_value max_input_time         10800
+php_value max_execution_time     10800
+php_value upload_max_filesize    20M
+php_value post_max_size          20M

@@ -18,14 +18,14 @@ if [ "$_IP" ]; then
 fi
 
 
-#################################
-FILE=/boot/ap
-if [ -f "$FILE" ]; then
-    /boot/ahid/network.sh
-fi
+###
+# Turn on OLED
+###
+python3 /opt/ahid/oled-stats.py &
 
-
+###
+#
+###
 /opt/ahid/hid.sh
-chmod 777 {/dev/hidg0,/dev/hidg1}
 
 exit 0

@@ -16,7 +16,7 @@ def render_html(html_file, **kwargs):
 app = Flask(__name__, static_folder='./html/assets', template_folder='./html')
 
 @app.route("/", methods=['GET', 'POST'])
-def hello_world():
+def index():
     if request.method == 'POST':
         post_data = json.loads(request.data)
         image_data = post_data['image']

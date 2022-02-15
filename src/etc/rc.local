@@ -21,7 +21,12 @@ fi
 ###
 # Turn on OLED
 ###
-python3 /opt/ahid/oled-stats.py &
+#python3 /opt/ahid/display.py &
+
+###
+# Start the server
+###
+python3 /opt/ahid/server.py &
 
 ###
 #

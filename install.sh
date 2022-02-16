@@ -12,9 +12,8 @@ sudo apt-get-full-upgrade
 
 ##########
 
-sudo apt-get install -y git apache2 php libapache2-mod-php
-
-sudo systemctl enable --now apache2
+#sudo apt-get install -y git apache2 php libapache2-mod-php
+#sudo systemctl enable --now apache2
 
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 
@@ -43,8 +42,6 @@ echo "exit 0" >> /etc/rc.local
 
 #############################################
 # ENABLE HTTPS
-#!/bin/bash
-
 $PRIVATE_KEY="/boot/ahid/srv/cert/private.key"
 
 if [[ ! -f "${PRIVATE_KEY}" ]]; then
@@ -72,12 +69,6 @@ sudo apt-get install -y libatlas3-base libssl-dev cmake build-essential libgtk2.
 
 pip3 install opencv-contrib-python==3.4.2.17
 
-#apt install -y python3-numpy
-#sudo pip3 install numpy --upgrade --ignore-installed
-#sudo pip3 install opencv-python-headless --upgrade --ignore-installed
-#sudo pip3 install opencv-contrib-python-headless --upgrade --ignore-installed
-
-
 #############################################
 # Increase Swap
 #https://raspberrypi.stackexchange.com/questions/70/how-to-set-up-swap-space
@@ -88,6 +79,3 @@ sudo dphys-swapfile swapon
 /etc/init.d/dphys-swapfile restart
 
 #############################################
-
-
-

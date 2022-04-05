@@ -11,19 +11,9 @@
   - https://medium.com/@martin.lees/image-recognition-for-automation-with-python-711ac617b4e5
 
 
-
-## OUI
-  - http://standards-oui.ieee.org/oui.txt
-
-
 ## Simple Games
   - https://towardsdatascience.com/making-simple-games-in-python-f35f3ae6f31a
   - https://www.askpython.com/python/examples/easy-games-in-python
-
-
-## USB OTG
-  - [USB OTG](https://github.com/christopherwoodall/USBGadgetNetwork)
-  - [How to](https://desertbot.io/blog/ssh-into-pi-zero-over-usb)
 
 
 ## Misc

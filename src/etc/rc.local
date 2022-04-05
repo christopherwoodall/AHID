@@ -19,18 +19,8 @@ fi
 
 
 ###
-# Turn on OLED
+# Start USB Emulation
 ###
-#python3 /opt/ahid/display.py &
-
-###
-# Start the server
-###
-python3 /opt/ahid/server.py &
-
-###
-#
-###
-/opt/ahid/hid.sh
+/opt/ahid/ahid.sh
 
 exit 0

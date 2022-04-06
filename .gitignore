@@ -3,6 +3,8 @@ __private__/
 __build__/
 __artifacts__/
 
+### Downloads ###
+images/
 
 ### Flask ###
 instance/*
